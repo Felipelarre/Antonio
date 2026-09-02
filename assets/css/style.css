@@ -295,6 +295,15 @@ img { background: var(--cor-fundo-2); }
 .nav__link:focus-visible::after { transform: scaleX(1); transform-origin: left; }
 
 .nav__cta { margin-left: .4rem; padding: .8rem 1.3rem; font-size: .88rem; }
+/* Sobre o header rolado (fundo creme) o texto branco some — usa tinta escura */
+.site-header.is-scrolled .nav__cta {
+  --btn-fg: var(--cor-tinta);
+  border-color: rgba(42, 26, 18, .35);
+}
+.site-header.is-scrolled .nav__cta:hover {
+  background: rgba(42, 26, 18, .08);
+  border-color: var(--cor-tinta);
+}
 
 .nav-toggle {
   display: none;
@@ -427,6 +436,7 @@ img { background: var(--cor-fundo-2); }
   position: absolute;
   inset: 0;
   z-index: 0;
+  pointer-events: none;
   opacity: .07;
   background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='84' height='84' viewBox='0 0 84 84'%3E%3Cg fill='none' stroke='%23C26A4A' stroke-width='2.2'%3E%3Cpath d='M42 5 L60 24 L79 42 L60 60 L42 79 L24 60 L5 42 L24 24 Z'/%3E%3Ccircle cx='42' cy='42' r='11'/%3E%3Cpath d='M0 0 Q21 21 0 42 M84 0 Q63 21 84 42 M0 84 Q21 63 0 42 M84 84 Q63 63 84 42'/%3E%3C/g%3E%3C/svg%3E");
   background-size: 84px 84px;
@@ -683,6 +693,8 @@ img { background: var(--cor-fundo-2); }
 
 /* ---------- Música ---------- */
 .live {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1.05fr .95fr;
   gap: clamp(2rem, 5vw, 4rem);
@@ -813,6 +825,7 @@ img { background: var(--cor-fundo-2); }
 .contact__hours { margin-top: var(--e-4); font-weight: var(--peso-medio); display: flex; align-items: center; gap: .5rem; }
 .contact__hours svg { width: 20px; height: 20px; color: var(--cor-laranja); }
 .contact__actions { margin-top: var(--e-5); display: flex; flex-wrap: wrap; gap: var(--e-3); }
+.contact__actions--center { justify-content: center; }
 
 .notices { margin-top: var(--e-6); list-style: none; display: grid; gap: var(--e-2); }
 .notices li { display: flex; gap: .6rem; font-size: .92rem; color: var(--cor-tinta-70); }
