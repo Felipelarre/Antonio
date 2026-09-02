@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://seuantoniojanga.com.br/sitemap.xml

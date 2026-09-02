@@ -1,0 +1,86 @@
+/* ============================================================
+   tokens.css — design tokens · Seu Antônio Bar e Petiscaria (Janga)
+
+   Direção visual travada no briefing: "Raiz com frescor".
+   Boteco raiz (azulejo, madeira, cores quentes) + frescor do
+   litoral pernambucano (laranja, verde, azul-marinho).
+   ============================================================ */
+
+:root {
+  /* ---------- Cor ---------- */
+  --cor-laranja:      #E8751A;   /* primária — preenchimentos, texto grande sobre escuro */
+  --cor-laranja-esc:  #C85E0E;   /* hover / estados pressionados */
+  --cor-kicker:       #9E4A0A;   /* kicker/rótulos pequenos sobre fundo claro (AA) */
+  --cor-em:           #C85E0E;   /* ênfase em títulos sobre fundo claro (AA grande) */
+  --cor-em-clara:     #F4A259;   /* ênfase/kicker sobre fundo escuro */
+  --cor-marinho:      #1A3A5C;   /* secundária — confiança, litoral */
+  --cor-marinho-esc:  #12293F;
+  --cor-limao:        #A3C94F;   /* destaque — frescor, espaço kids */
+  --cor-terracota:    #C26A4A;   /* apoio — texturas de azulejo e madeira */
+
+  --cor-tinta:        #2A1A12;   /* "preto" quente, vindo do emblema */
+  --cor-tinta-70:     #574236;
+  --cor-fundo:        #FFF8F0;   /* off-white quente — sensação de casa */
+  --cor-fundo-2:      #FBEEE0;   /* alternância de seção */
+  --cor-carta:        #FFFCF8;   /* fundo de cards */
+  --cor-linha:        #EADBC8;   /* divisórias suaves */
+
+  --cor-sucesso:      #1FA463;   /* WhatsApp */
+  --cor-sucesso-esc:  #17864F;
+
+  /* ---------- Tipografia ---------- */
+  --fonte-titulo: "Raleway", "Trebuchet MS", system-ui, sans-serif;
+  --fonte-corpo:  "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --peso-corpo:   400;
+  --peso-medio:   500;
+  --peso-forte:   700;
+  --peso-black:   800;
+
+  /* escala fluida */
+  --fs-kicker:  clamp(0.72rem, 0.68rem + 0.2vw, 0.82rem);
+  --fs-corpo:   clamp(1rem, 0.96rem + 0.25vw, 1.12rem);
+  --fs-corpo-g: clamp(1.12rem, 1.05rem + 0.4vw, 1.3rem);
+  --fs-h3:      clamp(1.2rem, 1.05rem + 0.7vw, 1.5rem);
+  --fs-h2:      clamp(1.9rem, 1.5rem + 2vw, 3.1rem);
+  --fs-h1:      clamp(2.4rem, 1.9rem + 3vw, 4.1rem);
+  --fs-mega:    clamp(3.4rem, 2rem + 7vw, 7rem);
+
+  /* ---------- Espaço ---------- */
+  --e-1: 0.25rem;
+  --e-2: 0.5rem;
+  --e-3: 0.75rem;
+  --e-4: 1rem;
+  --e-5: 1.5rem;
+  --e-6: 2rem;
+  --e-7: 3rem;
+  --e-8: 4.5rem;
+  --e-9: 7rem;
+
+  --gutter: clamp(1.15rem, 5vw, 4rem);
+  --largura-max: 1200px;
+  --largura-texto: 62ch;
+
+  /* ---------- Forma ---------- */
+  --raio-sm: 6px;
+  --raio-md: 8px;
+  --raio-lg: 16px;
+  --raio-pill: 999px;
+
+  --sombra-1: 0 2px 8px rgb(42 26 18 / 0.08);
+  --sombra-2: 0 10px 30px rgb(42 26 18 / 0.12);
+  --sombra-3: 0 22px 55px rgb(42 26 18 / 0.20);
+
+  /* ---------- Movimento ---------- */
+  --ease-suave: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-saida: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-rapida: 0.18s;
+  --dur-media: 0.35s;
+  --dur-lenta: 0.6s;
+
+  --header-h: 76px;
+}
+
+@media (max-width: 640px) {
+  :root { --header-h: 64px; }
+}

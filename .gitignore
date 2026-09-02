@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# pastas temporárias / restos de sincronização do Google Drive
+**/_lg/
+**/_tmp/
+_lg/
+_tmp/
+assets/img/favicon-antigo/
+.trash-*
+*.tmp

@@ -1,0 +1,13 @@
+{
+  "name": "Seu Antônio Bar e Petiscaria",
+  "short_name": "Seu Antônio",
+  "description": "Bar e petiscaria no Janga, Paulista-PE — comida de boteco, happy hour, espaço kids e música ao vivo.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFF8F0",
+  "theme_color": "#1A3A5C",
+  "icons": [
+    { "src": "/icon-192.png", "type": "image/png", "sizes": "192x192" },
+    { "src": "/icon-512.png", "type": "image/png", "sizes": "512x512" }
+  ]
+}
