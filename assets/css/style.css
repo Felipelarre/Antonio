@@ -295,15 +295,6 @@ img { background: var(--cor-fundo-2); }
 .nav__link:focus-visible::after { transform: scaleX(1); transform-origin: left; }
 
 .nav__cta { margin-left: .4rem; padding: .8rem 1.3rem; font-size: .88rem; }
-/* Sobre o header rolado (fundo creme) o texto branco some — usa tinta escura */
-.site-header.is-scrolled .nav__cta {
-  --btn-fg: var(--cor-tinta);
-  border-color: rgba(42, 26, 18, .35);
-}
-.site-header.is-scrolled .nav__cta:hover {
-  background: rgba(42, 26, 18, .08);
-  border-color: var(--cor-tinta);
-}
 
 .nav-toggle {
   display: none;
