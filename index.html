@@ -125,12 +125,25 @@
     <!-- ===== Hero ===== -->
     <section class="hero" aria-label="Boas-vindas">
       <img class="hero__bg" src="assets/fotos/espetinhos-na-chapa.jpg" alt="Tábua de espetinhos variados na chapa quente, servida na mesa do Seu Antônio" width="1200" height="1200" fetchpriority="high">
+      <!--
+        Vídeo de fundo em loop. As fontes (assets/video/hero-video.webm|mp4) são
+        anexadas pelo main.js só depois de confirmar que o arquivo existe — assim,
+        enquanto o vídeo final não chega, o site continua com a imagem/poster acima
+        e sem nenhum 404 no console. Requisitos do arquivo: sem trilha de áudio,
+        5-10s em loop suave, ≤1920x1080, ~2-4 MB. Ver assets/video/README.md.
+      -->
+      <div class="hero__media" aria-hidden="true">
+        <video class="hero__video" data-hero-video
+               autoplay muted loop playsinline preload="none"
+               poster="assets/video/hero-poster.jpg"
+               tabindex="-1"></video>
+      </div>
       <div class="hero__scrim"></div>
 
       <div class="wrap">
         <div class="hero__content">
           <p class="kicker">Boteco raiz · Litoral do Janga</p>
-          <h1 class="hero__title">O bar do Janga onde a família pede <span class="em">mais uma rodada</span>.</h1>
+          <h1 class="hero__title">Onde a família pede <span class="em">mais uma rodada.</span></h1>
           <p class="hero__sub">Comida de boteco com afeto, drinks caprichados e um espaço kids que todo mundo aprova. Seu Antônio é o point daqui.</p>
           <div class="hero__actions">
             <a class="btn btn--pulse" href="https://wa.me/5581979039543?text=Ol%C3%A1!%20Vi%20o%20site%20do%20Seu%20Ant%C3%B4nio%20e%20quero%20fazer%20uma%20reserva." target="_blank" rel="noopener">

@@ -107,6 +107,86 @@
     revealEls.forEach(function (el) { io.observe(el); });
   }
 
+  /* ---------- Hero: vídeo de fundo em loop (só no layout split, desktop) ---------- */
+  var heroVideo = document.querySelector('[data-hero-video]');
+  var heroSection = document.querySelector('.hero');
+  var heroSplit = window.matchMedia('(min-width: 901px)').matches;
+
+  if (heroVideo && (reduceMotion || !heroSplit)) {
+    // Menos movimento OU tela pequena: nem carrega o vídeo — o hero é a foto de
+    // fundo. Remove o <video> para não baixar nada e não pesar no mobile.
+    var media = heroVideo.closest('.hero__media');
+    if (media && media.parentNode) media.parentNode.removeChild(media);
+    else if (heroVideo.parentNode) heroVideo.parentNode.removeChild(heroVideo);
+    heroVideo = null;
+  }
+
+  if (heroVideo) {
+    var heroVideoSettled = false;
+
+    var keepPoster = function () {
+      if (heroVideoSettled) return;
+      heroVideoSettled = true;
+      // Sem fonte válida (arquivo ainda não existe, formato sem suporte, rede
+      // falha): remove o painel de vídeo e mantém a foto de fundo, sem quebrar nada.
+      var media = heroVideo.closest('.hero__media');
+      if (media && media.parentNode) media.parentNode.removeChild(media);
+      else if (heroVideo.parentNode) heroVideo.parentNode.removeChild(heroVideo);
+      if (heroSection) heroSection.classList.remove('hero--video');
+    };
+
+    heroVideo.addEventListener('playing', function () {
+      heroVideoSettled = true;
+      heroVideo.classList.add('is-playing');
+      if (heroSection) heroSection.classList.add('hero--video');
+    });
+    heroVideo.addEventListener('error', keepPoster);
+    // Rede de segurança: se em 8s nada foi carregado (readyState 0), fica no poster.
+    // Vídeo que está só bufferando (readyState > 0) é preservado.
+    window.setTimeout(function () {
+      if (!heroVideo || heroVideoSettled || heroVideo.readyState > 0) return;
+      keepPoster();
+    }, 8000);
+
+    var startHeroVideo = function () {
+      heroVideo.load();
+      var r = heroVideo.play();
+      if (r && typeof r.catch === 'function') {
+        r['catch'](function () { /* autoplay pode ser bloqueado; poster permanece */ });
+      }
+    };
+
+    var heroSources = [
+      { src: 'assets/video/hero-video.webm', type: 'video/webm' },
+      { src: 'assets/video/hero-video.mp4', type: 'video/mp4' }
+    ];
+
+    if (!window.fetch || !window.Promise) {
+      // Navegador antigo: sem como checar o arquivo com segurança — fica no poster.
+      keepPoster();
+    } else {
+      // Anexa cada fonte só se o arquivo responder 200. Um fetch para arquivo
+      // inexistente resolve normalmente (sem erro no console), diferente de um
+      // <source> no HTML, que dispara 404 visível enquanto o vídeo não existe.
+      window.Promise.all(heroSources.map(function (s) {
+        return window.fetch(s.src, { method: 'HEAD' })
+          .then(function (res) { return res && res.ok ? s : null; })
+          ['catch'](function () { return null; });
+      })).then(function (found) {
+        if (heroVideoSettled) return;
+        var disponiveis = found.filter(Boolean);
+        if (!disponiveis.length) { keepPoster(); return; }
+        disponiveis.forEach(function (s) {
+          var el = document.createElement('source');
+          el.src = s.src;
+          el.type = s.type;
+          heroVideo.appendChild(el);
+        });
+        startHeroVideo();
+      });
+    }
+  }
+
   /* ---------- Hero: parallax (entrada é feita por CSS) ---------- */
   if (hasGSAP && !reduceMotion && window.ScrollTrigger) {
     try {
