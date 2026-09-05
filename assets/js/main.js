@@ -329,7 +329,7 @@
       var obs = document.getElementById('rsv-obs').value.trim();
       if (obs) linhas.push('Observações: ' + obs);
 
-      var url = 'https://wa.me/5581979039543?text=' + encodeURIComponent(linhas.join('\n'));
+      var url = 'https://wa.me/5581992939515?text=' + encodeURIComponent(linhas.join('\n'));
       window.open(url, '_blank', 'noopener');
     });
   }
