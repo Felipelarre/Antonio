@@ -12,3 +12,6 @@ _tmp/
 assets/img/favicon-antigo/
 .trash-*
 *.tmp
+
+# exports soltos de vídeo (Pixelbin etc.) — não versionar
+pixelbin-*.mp4
