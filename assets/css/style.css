@@ -1227,7 +1227,11 @@ img { background: var(--cor-fundo-2); }
   .live__photo img { aspect-ratio: 16 / 11; rotate: none; }
   .footer-grid { grid-template-columns: 1fr; }
   .footer-col ul { gap: .4rem; }
-  .footer-col .footer-nav-list { grid-template-columns: repeat(2, 1fr); column-gap: var(--e-4); }
+  .footer-col .footer-nav-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: var(--e-4);
+  }
   .footer-nav-list, .footer-contact { font-size: .9rem; }
 }
 @media (max-width: 560px) {
