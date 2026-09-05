@@ -148,14 +148,12 @@
     }
   }
 
-  /* ---------- Hero: vídeo de fundo em loop (só no layout split, desktop) ---------- */
+  /* ---------- Hero: vídeo de fundo em loop ---------- */
   var heroVideo = document.querySelector('[data-hero-video]');
   var heroSection = document.querySelector('.hero');
-  var heroSplit = window.matchMedia('(min-width: 901px)').matches;
 
-  if (heroVideo && (reduceMotion || !heroSplit)) {
-    // Menos movimento OU tela pequena: nem carrega o vídeo — o hero é a foto de
-    // fundo. Remove o <video> para não baixar nada e não pesar no mobile.
+  if (heroVideo && reduceMotion) {
+    // Em modo de movimento reduzido, mantém a foto para evitar movimento no hero.
     var media = heroVideo.closest('.hero__media');
     if (media && media.parentNode) media.parentNode.removeChild(media);
     else if (heroVideo.parentNode) heroVideo.parentNode.removeChild(heroVideo);
