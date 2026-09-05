@@ -335,17 +335,21 @@
   }
 
   /* ---------- Rolagem suave respeitando reduced-motion ---------- */
-  if (!reduceMotion) {
-    document.querySelectorAll('a[href^="#"]').forEach(function (link) {
-      link.addEventListener('click', function (e) {
-        var id = link.getAttribute('href');
-        if (id.length < 2) return;
-        var target = document.querySelector(id);
-        if (!target) return;
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      var id = link.getAttribute('href');
+      if (id.length < 2) return;
+      var target = document.querySelector(id);
+      if (!target) return;
+      e.preventDefault();
+      var behavior = reduceMotion ? 'auto' : 'smooth';
+      if (id === '#topo') {
+        window.scrollTo({ top: 0, behavior: behavior });
+        history.replaceState(null, '', location.pathname + location.search);
+      } else {
+        target.scrollIntoView({ behavior: behavior, block: 'start' });
         history.replaceState(null, '', id);
-      });
+      }
     });
-  }
+  });
 })();
