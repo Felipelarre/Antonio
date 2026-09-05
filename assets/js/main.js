@@ -202,17 +202,43 @@
       { src: 'assets/video/hero-video.mp4', type: 'video/mp4' }
     ];
 
+    // Pequeno backoff entre novas tentativas do HEAD (em ms). O tamanho do
+    // array é o número de novas tentativas após a 1ª (2 aqui = 3 no total).
+    var HERO_HEAD_RETRY_DELAYS = [400, 900];
+
+    function tentarNovamente(s, tentativa) {
+      if (tentativa >= HERO_HEAD_RETRY_DELAYS.length) return null; // esgotou — aí sim fica no poster
+      return new window.Promise(function (resolve) {
+        window.setTimeout(function () {
+          resolve(checarFonte(s, tentativa + 1));
+        }, HERO_HEAD_RETRY_DELAYS[tentativa]);
+      });
+    }
+
+    // 404 é resposta definitiva (o arquivo realmente não existe) — não adianta
+    // tentar de novo. Qualquer outro status não-OK (5xx da CDN, por exemplo,
+    // que o GitHub Pages às vezes retorna de forma transitória em arquivos
+    // grandes) ou falha de rede é tratado como transitório e ganha retry.
+    function checarFonte(s, tentativa) {
+      return window.fetch(s.src, { method: 'HEAD' })
+        .then(function (res) {
+          if (res && res.ok) return s;
+          if (res && res.status === 404) return null;
+          return tentarNovamente(s, tentativa);
+        })
+        ['catch'](function () { return tentarNovamente(s, tentativa); });
+    }
+
     if (!window.fetch || !window.Promise) {
       // Navegador antigo: sem como checar o arquivo com segurança — fica no poster.
       keepPoster();
     } else {
-      // Anexa cada fonte só se o arquivo responder 200. Um fetch para arquivo
-      // inexistente resolve normalmente (sem erro no console), diferente de um
-      // <source> no HTML, que dispara 404 visível enquanto o vídeo não existe.
+      // Anexa cada fonte só se o arquivo responder 200 (com retry acima para
+      // erro transitório). Um fetch para arquivo inexistente resolve
+      // normalmente (sem erro no console), diferente de um <source> no HTML,
+      // que dispara 404 visível enquanto o vídeo não existe.
       window.Promise.all(heroSources.map(function (s) {
-        return window.fetch(s.src, { method: 'HEAD' })
-          .then(function (res) { return res && res.ok ? s : null; })
-          ['catch'](function () { return null; });
+        return checarFonte(s, 0);
       })).then(function (found) {
         if (heroVideoSettled) return;
         var disponiveis = found.filter(Boolean);
