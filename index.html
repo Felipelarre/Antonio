@@ -115,7 +115,7 @@
         <a class="nav__link" href="#musica">Música</a>
         <a class="nav__link" href="#galeria">Galeria</a>
         <a class="nav__link" href="#contato">Contato</a>
-        <a class="btn nav__cta" href="https://wa.me/5581979039543?text=Ol%C3%A1!%20Vi%20o%20site%20do%20Seu%20Ant%C3%B4nio%20e%20quero%20fazer%20uma%20reserva." target="_blank" rel="noopener">Fazer reserva</a>
+        <a class="btn nav__cta" href="#reserva">Fazer reserva</a>
       </nav>
     </div>
   </header>
@@ -146,7 +146,7 @@
           <h1 class="hero__title">Onde a família pede <span class="em">mais uma rodada.</span></h1>
           <p class="hero__sub">Comida de boteco com afeto, drinks caprichados e um espaço kids que todo mundo aprova. Seu Antônio é o point daqui.</p>
           <div class="hero__actions">
-            <a class="btn btn--pulse" href="https://wa.me/5581979039543?text=Ol%C3%A1!%20Vi%20o%20site%20do%20Seu%20Ant%C3%B4nio%20e%20quero%20fazer%20uma%20reserva." target="_blank" rel="noopener">
+            <a class="btn btn--pulse" href="#reserva">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.9 5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-1-.3-1.6-.6-2.9-1.2-4.7-4-4.9-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.1.1.3 0 .5l-.4.5-.3.3c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l1.9.9c.3.1.4.2.5.3.1.2.1.6-.1 1Z"/></svg>
               Fazer reserva
             </a>
@@ -202,9 +202,9 @@
     <!-- ===== Diferenciais ===== -->
     <section class="section section--tint" aria-labelledby="dif-title">
       <div class="wrap">
-        <div data-reveal>
+        <div class="u-center" data-reveal>
           <p class="kicker">Por que o Seu Antônio</p>
-          <h2 class="section__title" id="dif-title">O que faz a <span class="em">diferença</span> pra quem vem.</h2>
+          <h2 class="section__title u-center" id="dif-title">O que faz a <span class="em">diferença</span> pra quem vem.</h2>
           <p class="section__lead">Espaço kids com monitoras, banheiros climatizados, atendimento que recebe você pelo nome. E a comida? Caldinho de camarão que é sucesso, espetinho na medida certa e aquele drink que vira o destaque da noite.</p>
         </div>
 
@@ -248,9 +248,9 @@
     <!-- ===== Cardápio ===== -->
     <section class="section" id="cardapio" aria-labelledby="card-title">
       <div class="wrap">
-        <div data-reveal>
+        <div class="u-center" data-reveal>
           <p class="kicker">Cardápio</p>
-          <h2 class="section__title" id="card-title">Para <span class="em">beliscar, brindar</span> e repetir.</h2>
+          <h2 class="section__title u-center" id="card-title">Para <span class="em">beliscar, brindar</span> e repetir.</h2>
           <div class="squiggle" aria-hidden="true"></div>
         </div>
 
@@ -366,9 +366,9 @@
     <!-- ===== Galeria ===== -->
     <section class="section" id="galeria" aria-labelledby="gal-title">
       <div class="wrap">
-        <div data-reveal>
+        <div class="u-center" data-reveal>
           <p class="kicker">O clima da casa</p>
-          <h2 class="section__title" id="gal-title">Um rolê pelo <span class="em">Seu Antônio</span>.</h2>
+          <h2 class="section__title u-center" id="gal-title">Um rolê pelo <span class="em">Seu Antônio</span>.</h2>
           <p class="section__lead">Drink na mão, petisco na mesa, música rolando e a galera reunida. É mais ou menos assim toda noite.</p>
         </div>
 
@@ -392,11 +392,7 @@
         <div class="u-center" data-reveal>
           <p class="kicker">Quem vem, volta</p>
           <h2 class="section__title u-center" id="rev-title">Avaliações que <span class="em">falam por si</span>.</h2>
-          <div class="rating-hero">
-            <span class="num">4,5</span>
-            <span class="stars" aria-hidden="true">★★★★★</span>
-            <span class="count">165 avaliações públicas no Google</span>
-          </div>
+          <span class="rating-stars" aria-hidden="true"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></span>
         </div>
 
         <div class="reviews">
@@ -415,8 +411,18 @@
         </div>
 
         <div class="staff-note" data-reveal>
-          <p>No salão, o atendimento tem nome: <strong>Mirela, Sara, Gabriel, Matheus e Demétrius</strong> — sempre citados pelo nome nas avaliações.</p>
-          <small>Trechos de avaliações reais de clientes no Google.</small>
+          <span class="staff-note__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" focusable="false"><path d="M17 20v-1a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v1"/><circle cx="9" cy="7" r="3.2"/><path d="M23 20v-1a4 4 0 0 0-3-3.87"/><path d="M16.5 3.3a3.2 3.2 0 0 1 0 6.2"/></svg>
+          </span>
+          <p class="staff-note__lead">No salão, o atendimento tem nome</p>
+          <ul class="staff-note__names">
+            <li>Mirela</li>
+            <li>Sara</li>
+            <li>Gabriel</li>
+            <li>Matheus</li>
+            <li>Demétrius</li>
+          </ul>
+          <small>Citados pelo nome em avaliações reais de clientes no Google.</small>
         </div>
       </div>
     </section>
@@ -439,13 +445,6 @@
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
               Todos os dias, das 16h à meia-noite
             </p>
-
-            <div class="contact__actions contact__actions--center">
-              <a class="btn btn--ghost-dark" href="https://wa.me/5581979039543?text=Ol%C3%A1!%20Vi%20o%20site%20do%20Seu%20Ant%C3%B4nio%20e%20quero%20fazer%20uma%20reserva." target="_blank" rel="noopener">
-                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.9 5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-1-.3-1.6-.6-2.9-1.2-4.7-4-4.9-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.1.1.3 0 .5l-.4.5-.3.3c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l1.9.9c.3.1.4.2.5.3.1.2.1.6-.1 1Z"/></svg>
-                Reserva no WhatsApp
-              </a>
-            </div>
 
             <ul class="notices">
               <li>
@@ -479,13 +478,127 @@
       </div>
     </section>
 
+    <!-- ===== Reserva ===== -->
+    <section class="section section--navy" id="reserva" aria-labelledby="rsv-title">
+      <div class="wrap">
+        <div class="rsv">
+          <div class="rsv__intro" data-reveal>
+            <p class="kicker">Sua mesa te espera</p>
+            <h2 class="section__title" id="rsv-title">Garanta sua mesa <span class="em">em poucos cliques</span>.</h2>
+            <p class="section__lead">Preencha os dados abaixo. Ao enviar, abrimos o WhatsApp com sua reserva já pronta — a equipe confirma na hora.</p>
+
+            <form class="rsv-form" id="rsv-form" novalidate>
+              <div class="rsv-row">
+                <div class="rsv-field">
+                  <label for="rsv-nome">Nome completo</label>
+                  <input type="text" id="rsv-nome" name="nome" placeholder="Ex.: Maria Silva" autocomplete="name" required>
+                </div>
+                <div class="rsv-field">
+                  <label for="rsv-whats">WhatsApp para confirmação</label>
+                  <input type="tel" id="rsv-whats" name="whatsapp" placeholder="(81) 98888-8888" autocomplete="tel" required>
+                </div>
+              </div>
+
+              <div class="rsv-row">
+                <div class="rsv-field">
+                  <label for="rsv-data">Data</label>
+                  <input type="date" id="rsv-data" name="data" required>
+                </div>
+                <div class="rsv-field">
+                  <label for="rsv-horario">Horário</label>
+                  <select id="rsv-horario" name="horario" required>
+                    <option value="" disabled selected>Selecione</option>
+                    <option value="16:00">16:00</option>
+                    <option value="16:30">16:30</option>
+                    <option value="17:00">17:00</option>
+                    <option value="17:30">17:30</option>
+                    <option value="18:00">18:00</option>
+                    <option value="18:30">18:30</option>
+                    <option value="19:00">19:00</option>
+                    <option value="19:30">19:30</option>
+                    <option value="20:00">20:00</option>
+                    <option value="20:30">20:30</option>
+                    <option value="21:00">21:00</option>
+                    <option value="21:30">21:30</option>
+                    <option value="22:00">22:00</option>
+                    <option value="22:30">22:30</option>
+                    <option value="23:00">23:00</option>
+                    <option value="23:30">23:30</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="rsv-field">
+                <label for="rsv-pessoas">Número de pessoas</label>
+                <select id="rsv-pessoas" name="pessoas" required>
+                  <option value="" disabled selected>Quantos lugares à mesa?</option>
+                  <option value="1 pessoa">1 pessoa</option>
+                  <option value="2 pessoas">2 pessoas</option>
+                  <option value="3 pessoas">3 pessoas</option>
+                  <option value="4 pessoas">4 pessoas</option>
+                  <option value="5 pessoas">5 pessoas</option>
+                  <option value="6 pessoas">6 pessoas</option>
+                  <option value="7 pessoas">7 pessoas</option>
+                  <option value="8 pessoas">8 pessoas</option>
+                  <option value="9+ pessoas">9+ pessoas</option>
+                </select>
+              </div>
+
+              <div class="rsv-field">
+                <span class="rsv-field__label">Tipo de ocasião (opcional)</span>
+                <div class="rsv-occasions" id="rsv-occasions" role="group" aria-label="Tipo de ocasião">
+                  <button type="button" class="rsv-occ" data-value="Casual" aria-pressed="false">Casual</button>
+                  <button type="button" class="rsv-occ" data-value="Aniversário" aria-pressed="false">Aniversário</button>
+                  <button type="button" class="rsv-occ" data-value="Família + kids" aria-pressed="false">Família + kids</button>
+                  <button type="button" class="rsv-occ" data-value="Happy hour" aria-pressed="false">Happy hour</button>
+                  <button type="button" class="rsv-occ" data-value="Música ao vivo" aria-pressed="false">Música ao vivo</button>
+                </div>
+                <input type="hidden" id="rsv-ocasiao" name="ocasiao">
+              </div>
+
+              <div class="rsv-field">
+                <label for="rsv-obs">Observações (opcional)</label>
+                <textarea id="rsv-obs" name="observacoes" rows="3" placeholder="Ex.: mesa perto do espaço kids, cadeira de bebê, preferência de lugar…"></textarea>
+              </div>
+
+              <label class="rsv-consent">
+                <input type="checkbox" id="rsv-consent" required>
+                Concordo em compartilhar meus dados com o Seu Antônio Janga para o atendimento desta reserva, conforme a <a href="politica-de-privacidade.html">Política de Privacidade (LGPD)</a>.
+              </label>
+
+              <button type="submit" class="btn btn--wpp btn--lg rsv-submit">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.9 5-1.3A10 10 0 1 0 12 2Zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1-.4-.1-1-.3-1.6-.6-2.9-1.2-4.7-4-4.9-4.2-.1-.2-1.1-1.5-1.1-2.8 0-1.3.7-2 .9-2.2.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.1.1.3 0 .5l-.4.5-.3.3c-.1.1-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.6-.1l.7-.9c.2-.2.4-.2.6-.1l1.9.9c.3.1.4.2.5.3.1.2.1.6-.1 1Z"/></svg>
+                Enviar reserva pelo WhatsApp
+              </button>
+              <p class="rsv-note">Não guardamos esse formulário em servidor: a mensagem vai direto pro WhatsApp da casa, aberta no seu aparelho para você conferir antes de enviar.</p>
+            </form>
+          </div>
+
+          <aside class="rsv-card" data-reveal aria-hidden="true">
+            <div class="rsv-card__header">
+              <span class="rsv-card__brand">Comanda de reserva</span>
+              <span class="rsv-card__tag">Seu Antônio Janga · Bar e Petiscaria</span>
+            </div>
+            <div class="rsv-card__body">
+              <div class="rsv-card__row"><span>Cliente</span><span data-preview="nome">–</span></div>
+              <div class="rsv-card__row"><span>WhatsApp</span><span data-preview="whatsapp">–</span></div>
+              <div class="rsv-card__row"><span>Data</span><span data-preview="data">–</span></div>
+              <div class="rsv-card__row"><span>Horário</span><span data-preview="horario">–</span></div>
+              <div class="rsv-card__row"><span>Lugares</span><span data-preview="pessoas">–</span></div>
+              <div class="rsv-card__row"><span>Ocasião</span><span data-preview="ocasiao">–</span></div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
   </main>
 
   <!-- ===== Rodapé ===== -->
   <footer class="site-footer">
     <div class="wrap">
       <div class="footer-grid">
-        <div class="footer-col footer-col--brand">
+        <div class="footer-col">
           <div class="footer-brand">
             <img src="assets/img/logo-circular.png" alt="" width="48" height="48">
             <span class="brand__name">Seu Antônio</span>
@@ -495,29 +608,44 @@
             <a href="https://www.instagram.com/seuantoniobarjanga/" target="_blank" rel="noopener" aria-label="Instagram do Seu Antônio">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
             </a>
+            <!-- TODO: colocar o link real do TikTok quando o Felipe passar -->
+            <a href="#" target="_blank" rel="noopener" aria-label="TikTok do Seu Antônio">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14 3v10.5a3.5 3.5 0 1 1-3.5-3.5"/><path d="M14 7a4 4 0 0 0 4 4"/></svg>
+            </a>
+            <!-- TODO: colocar o link real do Facebook quando o Felipe passar -->
+            <a href="#" target="_blank" rel="noopener" aria-label="Facebook do Seu Antônio">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 2h-3a4 4 0 0 0-4 4v3H8v4h3v8h4v-8h3l1-4h-4V6a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
           </span>
         </div>
 
-        <nav class="footer-col" aria-label="Links do site">
-          <h4>Navegar</h4>
+        <div class="footer-col">
+          <h4>Navegação</h4>
           <ul>
             <li><a href="#o-bar">O Bar</a></li>
             <li><a href="#cardapio">Cardápio</a></li>
             <li><a href="#happy-hour">Happy Hour</a></li>
-            <li><a href="#musica">Música ao vivo</a></li>
+            <li><a href="#musica">Música</a></li>
             <li><a href="#galeria">Galeria</a></li>
-            <li><a href="#avaliacoes">Avaliações</a></li>
+            <li><a href="#reserva">Fazer reserva</a></li>
           </ul>
-        </nav>
+        </div>
 
         <div class="footer-col">
           <h4>Contato</h4>
-          <ul>
-            <li><a href="https://wa.me/5581979039543?text=Ol%C3%A1!%20Vi%20o%20site%20do%20Seu%20Ant%C3%B4nio%20e%20quero%20fazer%20uma%20reserva." target="_blank" rel="noopener">WhatsApp: (81) 97903-9543</a></li>
-            <li><a href="assets/cardapios/cardapio-seu-antonio.pdf" target="_blank" rel="noopener noreferrer">Cardápio completo (PDF)</a></li>
-            <li><a href="assets/cardapios/cardapio-drinks-seu-antonio.pdf" target="_blank" rel="noopener noreferrer">Carta de drinks (PDF)</a></li>
-            <li>Av. Dr. Cláudio José Gueiros Leite, 2306 — Janga, Paulista/PE</li>
-            <li>Todos os dias, 16h à meia-noite</li>
+          <ul class="footer-contact">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M21 11.5a8.38 8.38 0 0 1-4.7 7.6 8.5 8.5 0 0 1-8.6-.4L3 20l1.3-4.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 8.5-8.5h.3a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              <a href="https://wa.me/5581979039543?text=Ol%C3%A1!%20Vi%20o%20site%20do%20Seu%20Ant%C3%B4nio%20e%20quero%20fazer%20uma%20reserva." target="_blank" rel="noopener">WhatsApp: (81) 97903-9543</a>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+              <span>Todos os dias, 16h à meia-noite</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg>
+              <a href="https://www.google.com/maps/dir/?api=1&destination=Av.%20Dr.%20Cl%C3%A1udio%20Jos%C3%A9%20Gueiros%20Leite%2C%202306%2C%20Janga%2C%20Paulista%20-%20PE" target="_blank" rel="noopener">Av. Dr. Cláudio José Gueiros Leite, 2306 — Janga, Paulista/PE</a>
+            </li>
           </ul>
         </div>
       </div>

@@ -90,9 +90,29 @@
   /* ---------- Reveals ---------- */
   var revealEls = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
 
-  if (reduceMotion || !('IntersectionObserver' in window)) {
+  if (reduceMotion || !revealEls.length) {
     revealEls.forEach(function (el) { el.classList.add('is-visible'); });
-  } else {
+  } else if (hasGSAP && window.ScrollTrigger) {
+    // Reveal de verdade via GSAP + ScrollTrigger: agrupa por pai (cada
+    // grade/coluna vira seu próprio grupo) e usa ScrollTrigger.batch pra
+    // escalonar a entrada de quem chega junto na tela, em vez do delay
+    // manual por índice que a versão só-CSS usava.
+    window.gsap.registerPlugin(window.ScrollTrigger);
+    var revealParents = [];
+    revealEls.forEach(function (el) {
+      if (revealParents.indexOf(el.parentNode) === -1) revealParents.push(el.parentNode);
+    });
+    revealParents.forEach(function (parent) {
+      var group = Array.prototype.slice.call(parent.querySelectorAll(':scope > [data-reveal]'));
+      window.ScrollTrigger.batch(group, {
+        start: 'top 88%',
+        once: true,
+        onEnter: function (batch) {
+          window.gsap.to(batch, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out', stagger: 0.08 });
+        }
+      });
+    });
+  } else if ('IntersectionObserver' in window) {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (!entry.isIntersecting) return;
@@ -105,6 +125,27 @@
       });
     }, { rootMargin: '0px 0px -12% 0px', threshold: 0.1 });
     revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('is-visible'); });
+  }
+
+  /* ---------- Estrelas da seção Avaliações: entrada em cascata ---------- */
+  var starEls = Array.prototype.slice.call(document.querySelectorAll('.rating-stars span'));
+  if (starEls.length) {
+    if (reduceMotion || !(hasGSAP && window.ScrollTrigger)) {
+      // sem GSAP ou com reduced-motion, as estrelas já aparecem pelo reveal do pai
+    } else {
+      window.gsap.set(starEls, { opacity: 0, scale: .4, transformOrigin: '50% 50%' });
+      window.ScrollTrigger.batch(starEls, {
+        start: 'top 88%',
+        once: true,
+        onEnter: function (batch) {
+          // delay pra deixar o bloco (kicker+título) do reveal do pai entrar
+          // primeiro — as estrelas "estalam" em seguida, não junto.
+          window.gsap.to(batch, { opacity: 1, scale: 1, duration: .4, ease: 'back.out(2.6)', stagger: .08, delay: .35 });
+        }
+      });
+    }
   }
 
   /* ---------- Hero: vídeo de fundo em loop (só no layout split, desktop) ---------- */
@@ -197,6 +238,76 @@
         scrollTrigger: { trigger: '.hero', start: 'top top', end: 'bottom top', scrub: true }
       });
     } catch (err) { /* parallax é opcional */ }
+  }
+
+  /* ---------- Reserva: comanda ao vivo + envio pelo WhatsApp ---------- */
+  var rsvForm = document.getElementById('rsv-form');
+  if (rsvForm) {
+    var rsvDataInput = document.getElementById('rsv-data');
+    if (rsvDataInput) rsvDataInput.min = new Date().toISOString().slice(0, 10);
+
+    var rsvOcasiaoInput = document.getElementById('rsv-ocasiao');
+    var rsvOcasiaoBtns = Array.prototype.slice.call(document.querySelectorAll('#rsv-occasions .rsv-occ'));
+    rsvOcasiaoBtns.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var jaAtivo = btn.classList.contains('is-active');
+        rsvOcasiaoBtns.forEach(function (b) {
+          b.classList.remove('is-active');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        if (!jaAtivo) {
+          btn.classList.add('is-active');
+          btn.setAttribute('aria-pressed', 'true');
+        }
+        rsvOcasiaoInput.value = jaAtivo ? '' : btn.dataset.value;
+        atualizarComanda();
+      });
+    });
+
+    function formatarData(valor) {
+      if (!valor) return '';
+      var partes = valor.split('-');
+      return partes.length === 3 ? partes[2] + '/' + partes[1] + '/' + partes[0] : valor;
+    }
+
+    function atualizarComanda() {
+      var campos = {
+        nome: document.getElementById('rsv-nome').value,
+        whatsapp: document.getElementById('rsv-whats').value,
+        data: formatarData(rsvDataInput.value),
+        horario: document.getElementById('rsv-horario').value,
+        pessoas: document.getElementById('rsv-pessoas').value,
+        ocasiao: rsvOcasiaoInput.value
+      };
+      Object.keys(campos).forEach(function (chave) {
+        var alvo = document.querySelector('[data-preview="' + chave + '"]');
+        if (alvo) alvo.textContent = campos[chave] || '–';
+      });
+    }
+
+    rsvForm.addEventListener('input', atualizarComanda);
+    rsvForm.addEventListener('change', atualizarComanda);
+
+    rsvForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!rsvForm.reportValidity()) return;
+
+      var linhas = [
+        'Olá! Quero fazer uma reserva no Seu Antônio:',
+        '',
+        'Nome: ' + document.getElementById('rsv-nome').value,
+        'WhatsApp: ' + document.getElementById('rsv-whats').value,
+        'Data: ' + formatarData(rsvDataInput.value),
+        'Horário: ' + document.getElementById('rsv-horario').value,
+        'Pessoas: ' + document.getElementById('rsv-pessoas').value
+      ];
+      if (rsvOcasiaoInput.value) linhas.push('Ocasião: ' + rsvOcasiaoInput.value);
+      var obs = document.getElementById('rsv-obs').value.trim();
+      if (obs) linhas.push('Observações: ' + obs);
+
+      var url = 'https://wa.me/5581979039543?text=' + encodeURIComponent(linhas.join('\n'));
+      window.open(url, '_blank', 'noopener');
+    });
   }
 
   /* ---------- Rolagem suave respeitando reduced-motion ---------- */
